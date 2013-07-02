@@ -20,6 +20,7 @@ var YiiGenerator = module.exports = function YiiGenerator(args, options, config)
 
   // Download composer and install composer dependencies
   this.composerInstall = function() {
+      return;
     var file    = fs.createWriteStream('composer-installer.php');
     var request = http.get('http://getcomposer.org/installer', function(response) {
       response.pipe(file);
@@ -32,6 +33,14 @@ var YiiGenerator = module.exports = function YiiGenerator(args, options, config)
 };
 
 util.inherits(YiiGenerator, yeoman.generators.Base);
+
+YiiGenerator.prototype._yii = function _yii() {
+    this.copy('_yii-index.php', 'public/index.php');
+}
+
+YiiGenerator.prototype._yii2 = function _yii2() {
+    this.copy('_yii2-index.php', 'public/index.php');
+}
 
 YiiGenerator.prototype.app = function app() {
   this.mkdir('runtime');
@@ -56,6 +65,12 @@ YiiGenerator.prototype.app = function app() {
   this.copy('_package.json',  'package.json');
   this.copy('_composer.json', 'composer.json');
   this.copy('_bower.json',    'bower.json');
+
+  if (this.options.yii2) {
+      this._yii2();
+  } else {
+      this._yii();
+  }
 };
 
 var message = function(msg) {
