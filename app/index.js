@@ -62,8 +62,12 @@ YiiGenerator.prototype.app = function app() {
   // Tests
   this.mkdir('tests');
 
-  this.copy('_package.json',  'package.json');
+  // php stuff
   this.copy('_composer.json', 'composer.json');
+  this.copy('_htaccess',      'public/.htaccess');
+
+  // non-php stuff
+  this.copy('_package.json',  'package.json');
   this.copy('_bower.json',    'bower.json');
 
   if (this.options.yii2) {
