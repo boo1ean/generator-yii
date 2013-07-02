@@ -2,7 +2,9 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
-
+var http = require('http');
+var fs = require('fs');
+var spawn = require('child_process').spawn;
 
 var YiiGenerator = module.exports = function YiiGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
@@ -16,8 +18,16 @@ var YiiGenerator = module.exports = function YiiGenerator(args, options, config)
 
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 
+  // Download composer and install composer dependencies
   this.composerInstall = function() {
-      this.runInstall('composer');
+    var file    = fs.createWriteStream('composer-installer.php');
+    var request = http.get('http://getcomposer.org/installer', function(response) {
+      response.pipe(file);
+      spawn('php', ['composer-installer.php']).on('exit', function() {
+          fs.unlink('composer-installer.php');
+          spawn('php', ['composer.phar', 'install'], { stdio: 'inherit' });
+      });
+    });
   }
 };
 
