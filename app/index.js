@@ -36,10 +36,12 @@ util.inherits(YiiGenerator, yeoman.generators.Base);
 
 YiiGenerator.prototype._yii = function _yii() {
     this.copy('_yii-index.php', 'public/index.php');
+    this.copy('_yii-config-main.php', 'app/config/main.php');
 }
 
 YiiGenerator.prototype._yii2 = function _yii2() {
     this.copy('_yii2-index.php', 'public/index.php');
+    this.copy('_yii2-config-main.php', 'app/config/main.php');
 }
 
 YiiGenerator.prototype.app = function app() {
@@ -62,14 +64,17 @@ YiiGenerator.prototype.app = function app() {
   // Tests
   this.mkdir('tests');
 
-  // php stuff
+  // app stuff
+  this.copy('_config-params.php', 'app/config/params.php');
+
+  // project stuff
   this.copy('_composer.json', 'composer.json');
-  this.copy('_htaccess',      'public/.htaccess');
-  this.copy('_README.md',     'README.md');
+  this.copy('_README.md', 'README.md');
+  this.copy('_htaccess', 'public/.htaccess');
 
   // non-php stuff
-  this.copy('_package.json',  'package.json');
-  this.copy('_bower.json',    'bower.json');
+  this.copy('_package.json', 'package.json');
+  this.copy('_bower.json', 'bower.json');
 
   if (this.options.yii2) {
       this._yii2();
