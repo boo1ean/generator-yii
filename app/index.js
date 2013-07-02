@@ -9,9 +9,16 @@ var YiiGenerator = module.exports = function YiiGenerator(args, options, config)
 
   this.on('end', function () {
     this.installDependencies({ skipInstall: options['skip-install'] });
+    if (!options['skip-install']) {
+        this.composerInstall();
+    }
   });
 
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
+
+  this.composerInstall = function() {
+      this.runInstall('composer');
+  }
 };
 
 util.inherits(YiiGenerator, yeoman.generators.Base);
