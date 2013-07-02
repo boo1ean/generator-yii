@@ -12,7 +12,7 @@ var YiiGenerator = module.exports = function YiiGenerator(args, options, config)
   this.on('end', function () {
     this.installDependencies({ skipInstall: options['skip-install'] });
     if (!options['skip-install']) {
-        this.composerInstall();
+      this.composerInstall();
     }
   });
 
@@ -20,13 +20,12 @@ var YiiGenerator = module.exports = function YiiGenerator(args, options, config)
 
   // Download composer and install composer dependencies
   this.composerInstall = function() {
-      return;
     var file    = fs.createWriteStream('composer-installer.php');
     var request = http.get('http://getcomposer.org/installer', function(response) {
       response.pipe(file);
       spawn('php', ['composer-installer.php']).on('exit', function() {
-          fs.unlink('composer-installer.php');
-          spawn('php', ['composer.phar', 'install'], { stdio: 'inherit' });
+        fs.unlink('composer-installer.php');
+        spawn('php', ['composer.phar', 'install'], { stdio: 'inherit' });
       });
     });
   }
@@ -35,13 +34,15 @@ var YiiGenerator = module.exports = function YiiGenerator(args, options, config)
 util.inherits(YiiGenerator, yeoman.generators.Base);
 
 YiiGenerator.prototype._yii = function _yii() {
-    this.copy('_yii-index.php', 'public/index.php');
-    this.copy('_yii-config-main.php', 'app/config/main.php');
+  this.copy('_yii-index.php', 'public/index.php');
+  this.copy('_yii-config-main.php', 'app/config/main.php');
+  this.copy('_yii-SiteController.php', 'app/controllers/SiteController.php');
 }
 
 YiiGenerator.prototype._yii2 = function _yii2() {
-    this.copy('_yii2-index.php', 'public/index.php');
-    this.copy('_yii2-config-main.php', 'app/config/main.php');
+  this.copy('_yii2-index.php', 'public/index.php');
+  this.copy('_yii2-config-main.php', 'app/config/main.php');
+  this.copy('_yii2-SiteController.php', 'app/controllers/sitecontroller.php');
 }
 
 YiiGenerator.prototype.app = function app() {
@@ -71,6 +72,7 @@ YiiGenerator.prototype.app = function app() {
   this.copy('_composer.json', 'composer.json');
   this.copy('_README.md', 'README.md');
   this.copy('_htaccess', 'public/.htaccess');
+  this.copy('_views-site-index.php', 'app/views/site/index.php');
 
   // non-php stuff
   this.copy('_package.json', 'package.json');
@@ -84,12 +86,12 @@ YiiGenerator.prototype.app = function app() {
 };
 
 var message = function(msg) {
-    return function() {
-        console.log(msg);
-    }
+  return function() {
+    console.log(msg);
+  }
 }
 
 YiiGenerator.prototype.setWritable = function setWritable() {
-    fs.chmod('runtime', '777', message('Successfully changed permissions for runtime.'));
-    fs.chmod('public/assets', '777', message('Successfully changed permissions for public/assets.'));
+  fs.chmod('runtime', '777', message('Successfully changed permissions for runtime.'));
+  fs.chmod('public/assets', '777', message('Successfully changed permissions for public/assets.'));
 }
