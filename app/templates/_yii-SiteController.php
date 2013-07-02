@@ -1,11 +1,11 @@
 <?php
-class SiteController extends Controller
+class SiteController extends CController
 {
     public function actionIndex() {
-        $this->render('index');
+        return $this->render('index');
     }
 
     public function actionError() {
-        $this->render('error');
+        return $this->render('error');
     }
 }
