@@ -57,3 +57,14 @@ YiiGenerator.prototype.app = function app() {
   this.copy('_composer.json', 'composer.json');
   this.copy('_bower.json',    'bower.json');
 };
+
+var message = function(msg) {
+    return function() {
+        console.log(msg);
+    }
+}
+
+YiiGenerator.prototype.setWritable = function setWritable() {
+    fs.chmod('runtime', '777', message('Successfully changed permissions for runtime.'));
+    fs.chmod('public/assets', '777', message('Successfully changed permissions for public/assets.'));
+}
