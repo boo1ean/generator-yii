@@ -65,6 +65,7 @@ YiiGenerator.prototype.app = function app() {
   // php stuff
   this.copy('_composer.json', 'composer.json');
   this.copy('_htaccess',      'public/.htaccess');
+  this.copy('_README.md',     'README.md');
 
   // non-php stuff
   this.copy('_package.json',  'package.json');
