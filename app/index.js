@@ -42,7 +42,8 @@ YiiGenerator.prototype._yii = function _yii() {
 YiiGenerator.prototype._yii2 = function _yii2() {
   this.copy('_yii2-index.php', 'public/index.php');
   this.copy('_yii2-config-main.php', 'app/config/main.php');
-  this.copy('_yii2-SiteController.php', 'app/controllers/sitecontroller.php');
+  this.copy('_yii2-SiteController.php', 'app/controllers/SiteController.php');
+  this.copy('_yii2-assets.php', 'app/config/assets.php');
 }
 
 YiiGenerator.prototype.app = function app() {
@@ -73,6 +74,7 @@ YiiGenerator.prototype.app = function app() {
   this.copy('_README.md', 'README.md');
   this.copy('_htaccess', 'public/.htaccess');
   this.copy('_views-site-index.php', 'app/views/site/index.php');
+  this.copy('_css-site.css', 'public/css/site.css');
 
   // non-php stuff
   this.copy('_package.json', 'package.json');
