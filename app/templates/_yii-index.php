@@ -1,6 +1,7 @@
 <?php
 $config = dirname(__FILE__) . '/../app/config/main.php';
 require(__DIR__ . '/../vendor/autoload.php');
+require(__DIR__ . '/../vendor/yiisoft/yii/framework/yii.php');
 
 // remove the following lines when in production mode
 defined('YII_DEBUG') or define('YII_DEBUG',true);
