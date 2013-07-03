@@ -20,10 +20,9 @@ return array(
         ),
 
         'log' => array(
-            'class' => 'yii\logging\Router',
             'targets' => array(
                 array(
-                    'class' => 'yii\logging\FileTarget',
+                    'class' => 'yii\log\FileTarget',
                     'levels' => array('error', 'warning')
                 )
             )
