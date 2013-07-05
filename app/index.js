@@ -40,6 +40,7 @@ YiiGenerator.prototype._yii = function _yii() {
   this.copy('_yii-SiteController.php', 'app/controllers/SiteController.php');
   this.copy('_yii-layout.php', 'app/views/layouts/main.php');
   this.copy('_yii-console.php', 'yii');
+  this.copy('_yii-phpunit-bootstrap.php', 'tests/bootstrap.php');
 }
 
 YiiGenerator.prototype._yii2 = function _yii2() {
@@ -50,6 +51,7 @@ YiiGenerator.prototype._yii2 = function _yii2() {
   this.copy('_yii2-assets.php', 'app/config/assets.php');
   this.copy('_yii2-layout.php', 'app/views/layouts/main.php');
   this.copy('_yii2-console.php', 'yii');
+  this.copy('_yii2-phpunit-bootstrap.php', 'tests/bootstrap.php');
 }
 
 YiiGenerator.prototype.app = function app() {
@@ -62,6 +64,7 @@ YiiGenerator.prototype.app = function app() {
   this.mkdir('app');
   this.mkdir('app/runtime');
   this.mkdir('app/controllers');
+  this.mkdir('app/components');
   this.mkdir('app/migrations');
   this.mkdir('app/config');
   this.mkdir('app/models');
@@ -70,6 +73,13 @@ YiiGenerator.prototype.app = function app() {
 
   // Tests
   this.mkdir('tests');
+  this.mkdir('tests/controllers');
+  this.mkdir('tests/models');
+  this.mkdir('tests/behaviors');
+  this.mkdir('tests/components');
+
+  // Tests stuff
+  this.copy('_phpunit.xml', 'tests/phpunit.xml');
 
   // app stuff
   this.copy('_config-params.php', 'app/config/params.php');
