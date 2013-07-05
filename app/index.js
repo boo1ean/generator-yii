@@ -36,6 +36,7 @@ util.inherits(YiiGenerator, yeoman.generators.Base);
 YiiGenerator.prototype._yii = function _yii() {
   this.copy('_yii-index.php', 'public/index.php');
   this.copy('_yii-config-main.php', 'app/config/main.php');
+  this.copy('_yii-config-console.php', 'app/config/console.php');
   this.copy('_yii-SiteController.php', 'app/controllers/SiteController.php');
   this.copy('_yii-layout.php', 'app/views/layouts/main.php');
   this.copy('_yii-console.php', 'yii');
@@ -44,6 +45,7 @@ YiiGenerator.prototype._yii = function _yii() {
 YiiGenerator.prototype._yii2 = function _yii2() {
   this.copy('_yii2-index.php', 'public/index.php');
   this.copy('_yii2-config-main.php', 'app/config/main.php');
+  this.copy('_yii2-config-console.php', 'app/config/console.php');
   this.copy('_yii2-SiteController.php', 'app/controllers/SiteController.php');
   this.copy('_yii2-assets.php', 'app/config/assets.php');
   this.copy('_yii2-layout.php', 'app/views/layouts/main.php');
