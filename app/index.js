@@ -112,4 +112,10 @@ YiiGenerator.prototype.setWritable = function setWritable() {
   fs.chmod('app/runtime',   '777', message('Successfully changed permissions for app/runtime.'));
   fs.chmod('public/assets', '777', message('Successfully changed permissions for public/assets.'));
   fs.chmod('yii',           '777', message('Successfully changed permissions for yii.'));
+
+  if (this.options.yii2) {
+
+  } else {
+      spawn('ln', ['-s', '../vendor/bin/phpunit', 'tests/phpunit'], message('Successfully created link for phpunit in tests/phpunit.'));
+  }
 }
