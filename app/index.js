@@ -38,6 +38,7 @@ YiiGenerator.prototype._yii = function _yii() {
   this.copy('_yii-config-main.php', 'app/config/main.php');
   this.copy('_yii-SiteController.php', 'app/controllers/SiteController.php');
   this.copy('_yii-layout.php', 'app/views/layouts/main.php');
+  this.copy('_yii-console.php', 'yii');
 }
 
 YiiGenerator.prototype._yii2 = function _yii2() {
@@ -46,6 +47,7 @@ YiiGenerator.prototype._yii2 = function _yii2() {
   this.copy('_yii2-SiteController.php', 'app/controllers/SiteController.php');
   this.copy('_yii2-assets.php', 'app/config/assets.php');
   this.copy('_yii2-layout.php', 'app/views/layouts/main.php');
+  this.copy('_yii2-console.php', 'yii');
 }
 
 YiiGenerator.prototype.app = function app() {
@@ -95,6 +97,7 @@ var message = function(msg) {
 }
 
 YiiGenerator.prototype.setWritable = function setWritable() {
-  fs.chmod('app/runtime', '777', message('Successfully changed permissions for app/runtime.'));
+  fs.chmod('app/runtime',   '777', message('Successfully changed permissions for app/runtime.'));
   fs.chmod('public/assets', '777', message('Successfully changed permissions for public/assets.'));
+  fs.chmod('yii',           '777', message('Successfully changed permissions for yii.'));
 }
